@@ -228,13 +228,26 @@ nav.tabs a.on{color:var(--teal);font-weight:700}
   .actions,.back{display:none!important}
   .blk>h3{break-after:avoid}
   .note-m,.ct{break-inside:avoid}
-  .cover .cv{display:flex;flex-direction:column;align-items:center;text-align:center;padding:40mm 0 18mm;border-bottom:2px solid var(--teal);margin-bottom:10mm}
-  .cover .st{font-size:16pt;color:var(--ink)!important}
-  .tocw h2{font-size:14pt;color:var(--teal);margin-bottom:6px}
-  .cover svg{width:110px;height:110px}
-  .cover h1{font-family:"IBM Plex Sans Arabic";font-size:34pt;color:var(--teal);margin:14px 0 2px}
-  .cover .en{letter-spacing:6px;color:var(--gold);font-weight:700}
-  .cover p{color:var(--ink2);margin-top:8px}
+  @page cover{margin:0}
+  .cover{page:cover;height:297mm;width:210mm;position:relative;overflow:hidden;background:linear-gradient(160deg,#0e5a63 0%,#0b3f45 75%)!important;color:#fff;display:flex;flex-direction:column;padding:32mm 22mm 16mm}
+  .cv-orbit{position:absolute;width:260mm;height:260mm;left:-90mm;top:-60mm;opacity:.09}
+  .cv-top{display:flex;flex-direction:column;align-items:center;text-align:center}
+  .cv-logo{width:38mm;height:38mm}
+  .cv-name{font-size:46pt;font-weight:700;line-height:1.3;margin-top:4mm}
+  .cv-en{letter-spacing:8px;color:#e9c27a;font-weight:700;font-size:12pt}
+  .cv-mid{text-align:center;margin-top:16mm}
+  .cv-k{color:#e9c27a;font-weight:600;font-size:12pt}
+  .cv-t{font-size:28pt;font-weight:700;line-height:1.5;margin:2mm 0}
+  .cv-idea{font-size:12pt;opacity:.9}
+  .cv-motto{display:flex;justify-content:center;gap:8px;margin-top:7mm}
+  .cv-motto span{border:1px solid rgba(255,255,255,.3);border-radius:99px;padding:1mm 5mm;font-size:11pt}
+  .cv-toc{margin-top:auto;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:5mm;padding:6mm 8mm}
+  .cv-h{color:#e9c27a;font-weight:700;font-size:12pt;margin-bottom:2mm}
+  .cv-toc ul{list-style:none}
+  .cv-toc li{display:flex;gap:4mm;align-items:baseline;padding:2mm 0;border-top:1px solid rgba(255,255,255,.12);font-size:11pt}
+  .cv-toc li:first-child{border-top:0}
+  .cv-toc li em{font-style:normal;margin-inline-start:auto;opacity:.8;font-size:10pt}
+  .cv-foot{display:flex;justify-content:space-between;margin-top:6mm;font-size:9.5pt;opacity:.75}
   .toc li{display:flex;justify-content:space-between;border-bottom:1px dotted #ccc;padding:5px 0;list-style:none}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
@@ -624,8 +637,23 @@ function printOne(id){
 function countL(n){ return n===1?"لقاء واحد":n===2?"لقاءان":(n<=10?`${AR(n)} لقاءات`:`${AR(n)} لقاءً`); }
 function printBook(){
   const list=[...SESSIONS].sort((a,b)=>a.id-b.id);
-  $("#print").innerHTML=`<div class="pg cover"><div class="cv"><svg style="--o:#0e5a63;--c:#0e5a63;--l:#fff"><use href="#madar"/></svg><h1>مَدار</h1><div class="en">MADAR</div><p class="st">بين النص والتطبيق</p><p>كتيّب اللقاءات — ${countL(list.length)}</p><p>${esc(SITE)}<br>إشراف أ. عبدالله الحارثي — توثيق ${esc(AUTHOR.name)}</p></div>
-  <div class="tocw"><h2>الفهرس</h2><ul class="toc">${list.map(s=>`<li><span>اللقاء ${AR(s.id)} — ${esc(AXES[s.axis].name)}</span><span>${esc(fullDate(s.date))}</span></li>`).join("")}</ul></div></div>
+  const today=new Date().toISOString().slice(0,10);
+  $("#print").innerHTML=`<div class="pg cover">
+    <svg class="cv-orbit" viewBox="0 0 120 120"><g transform="rotate(-28 60 60)"><ellipse cx="60" cy="60" rx="54" ry="22" fill="none" stroke="#fff" stroke-width="1.2"/></g><circle cx="60" cy="60" r="23" fill="none" stroke="#fff" stroke-width="1.2"/></svg>
+    <div class="cv-top">
+      <svg class="cv-logo" style="--o:#e9c27a;--c:#fff;--l:#0b3f45"><use href="#madar"/></svg>
+      <div class="cv-name">مَدار</div><div class="cv-en">MADAR</div>
+    </div>
+    <div class="cv-mid">
+      <div class="cv-k">سلسلة نقاشات مهنية — ${esc(SITE)}</div>
+      <div class="cv-t">بين النص والتطبيق</div>
+      <div class="cv-idea">فكرة رائدة من الأستاذ / عبدالله الحارثي</div>
+      <div class="cv-motto"><span>إجابة دقيقة</span><span>سند نظامي</span><span>خبرة متبادلة</span></div>
+    </div>
+    <div class="cv-toc"><div class="cv-h">كتيّب اللقاءات — ${countL(list.length)}</div>
+      <ul>${list.map(s=>`<li><b>اللقاء ${AR(s.id)}</b><span>${esc(AXES[s.axis].name)}</span><em>${esc(fullDate(s.date))}</em></li>`).join("")}</ul></div>
+    <div class="cv-foot"><span>توثيق وتصميم: ${esc(AUTHOR.name)}</span><span>صدر في ${esc(fullDate(today))}</span></div>
+  </div>
   ${list.map(s=>`<div class="pg">${printHeader()}${sessionHTML(s,true)}</div>`).join("")}`;
   document.title="مدار - كتيب اللقاءات"; doPrint();
 }

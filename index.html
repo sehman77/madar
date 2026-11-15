@@ -110,6 +110,14 @@ main{max-width:760px;margin:0 auto;padding:18px 16px 120px}
 .ref .art b{font-family:"IBM Plex Sans Arabic";font-size:22px}
 .ref .law{font-weight:600;font-size:14.5px}
 .ref .det{font-size:12.5px;color:#7a6a4a}
+.ref{align-items:flex-start}
+.ref .rb{flex:1}
+.ref blockquote{margin:8px 0 6px;background:#fff;border-inline-start:3px solid var(--gold);border-radius:8px;padding:8px 12px;font-size:14.5px;line-height:1.9;color:var(--ink)}
+.srcl{display:inline-block;background:var(--teal);color:#fff!important;border-radius:99px;padding:2px 12px;font-size:12.5px;font-weight:600;margin-inline-end:8px}
+.srcn{font-size:11.5px;color:#7a6a4a}
+.check{margin-top:8px;background:#fff8ec;border:1px dashed var(--gold);border-radius:10px;padding:8px 12px;font-size:13px;line-height:1.85;color:#6b5320}
+.check b{color:#8a6418}
+a.cite{text-decoration:none}
 
 /* خيط النقاش */
 .thread{position:relative;padding-inline-start:0}
@@ -318,10 +326,18 @@ const SESSIONS = [
     question: "إذا فوّض مدير المدرسة أحدَ الوكلاء أو الموظفين بممارسة صلاحيةٍ معينة، فهل تنتقل إليه المسؤوليةُ النظاميةُ كاملةً عن القرار، أم يبقى المدير مسؤولًا عن التفويض والمتابعة، ويتحمّل المفوَّض إليه مسؤوليةَ ما باشره في حدود التفويض؟",
     askedBy: "أ. عبدالله الحارثي",
     refs: [
-      { law: "اللائحة التنفيذية للموارد البشرية في الخدمة المدنية", article: 237, note: "كتابة التفويض وبياناته" },
-      { law: "اللائحة التنفيذية للموارد البشرية في الخدمة المدنية", article: 240, note: "التفويض لا يُعفي المفوِّض من المسؤولية" },
-      { law: "نظام الخدمة المدنية", article: 15, note: "مسؤولية الموظف عمّا يصدر عنه" },
-      { law: "مدونة السلوك الوظيفي", article: 5, note: "تصويبًا لما ورد أولًا بأنها الرابعة" }
+      { law: "اللائحة التنفيذية للموارد البشرية في الخدمة المدنية", article: 237, note: "الباب العاشر: تفويض الصلاحيات",
+        text: "يتم التفويض بقرار مكتوب يتضمن الصلاحيات المفوضة واسم الموظف المُفوَّض ومسمى وظيفته ومدة التفويض.",
+        url: "https://www.hrsd.gov.sa/sites/default/files/2026-01/lay-ht-almward-albshryt-fy-alkhdmt-almdnyt--mttb-t-29rjb-1447h.pdf", src: "وزارة الموارد البشرية والتنمية الاجتماعية — النسخة المحدّثة" },
+      { law: "اللائحة التنفيذية للموارد البشرية في الخدمة المدنية", article: 240, note: "الباب العاشر: تفويض الصلاحيات",
+        text: "التفويض لا يُعفي المُفوِّض من المسؤولية.",
+        url: "https://www.hrsd.gov.sa/sites/default/files/2026-01/lay-ht-almward-albshryt-fy-alkhdmt-almdnyt--mttb-t-29rjb-1447h.pdf", src: "وزارة الموارد البشرية والتنمية الاجتماعية — النسخة المحدّثة" },
+      { law: "نظام الخدمة المدنية", article: 15, note: "الصادر بالمرسوم الملكي م/49 — ساري",
+        text: "كل موظف مسؤول عما يصدر عنه ومسؤول عن حسن سير العمل في حدود اختصاصه.",
+        url: "https://laws.boe.gov.sa/BoeLaws/Laws/LawDetails/32f651e6-2976-439c-b418-a9a700f23fb2/1", src: "هيئة الخبراء بمجلس الوزراء" },
+      { law: "مدونة قواعد السلوك الوظيفي وأخلاقيات الوظيفة العامة", article: 5, note: "المعتمدة بقرار مجلس الوزراء رقم (555) وتاريخ 25/12/1437هـ — المادة الخامسة لا الرابعة، كما صُوِّب في النقاش",
+        text: "كل موظف عام مسؤول عما يصدر منه، وعن حسن سير العمل في حدود اختصاصه.",
+        url: "https://tvtc.gov.sa/ar/Departments/tvtcdepartments/hr/Documents/%D9%85%D8%AF%D9%88%D9%86%D8%A9%20%D8%A7%D9%84%D8%B3%D9%84%D9%88%D9%83%20%D8%A7%D9%84%D9%88%D8%B8%D9%8A%D9%81%D9%8A%20%D8%A7%D9%84%D9%85%D8%B9%D8%AA%D9%85%D8%AF%D8%A9%20%D9%85%D9%86%20%D9%88%D8%B2%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D9%85%D9%88%D8%A7%D8%B1%D8%AF%20%D8%A7%D9%84%D8%A8%D8%B4%D8%B1%D9%8A%D8%A9%20(%D8%A7%D8%AE%D8%B1%20%D9%86%D8%B3%D8%AE%D8%A9%20%D9%85%D8%AF%D9%82%D9%82%D9%87%20%D8%B1%D9%82%D9%854).pdf", src: "نسخة منشورة على موقع المؤسسة العامة للتدريب التقني والمهني" }
     ],
     note: { by: "أ. عبدالله الحارثي — المشرف", text: "اعتبروها دورة مكثفة جدًا، نلتزم فيها بصلب السؤال، ونطلب سندًا موثقًا وتفصيلًا دقيقًا.\nفغايتنا أن نتعلم علمًا نافعًا، لا أن نتبادل إجابات عابرة." },
     thread: [
@@ -331,12 +347,12 @@ const SESSIONS = [
         text: "هل التفويض كتابي ورسمي؟" },
       { by: "", phone: "4582", time: "5:11 م", kind: "sanad", reply: true, re: "سليمان الذبياني",
         text: "مساء رائع 👍 السند النظامي: المادة ٢٤٠، اللائحة التنفيذية للموارد البشرية.",
-        ref: { law: "اللائحة التنفيذية للموارد البشرية", article: 240 } },
+        ref: { law: "اللائحة التنفيذية للموارد البشرية", article: 240, url: "https://www.hrsd.gov.sa/sites/default/files/2026-01/lay-ht-almward-albshryt-fy-alkhdmt-almdnyt--mttb-t-29rjb-1447h.pdf" } },
       { by: "سليمان الذبياني", time: "5:12 م", kind: "ray",
         text: "المفوَّض يتحمّل مسؤولية ما فُوِّض به وفق القرار، وتبقى مسؤولية المفوِّض في الإشراف والمتابعة." },
       { by: "", phone: "4582", time: "5:14 م", kind: "sanad", reply: true, re: "سؤال العضو (8337)",
         text: "المادة ٢٣٧ نصّت على ذلك: أن يكون مكتوبًا، يتضمن الصلاحيات المفوَّضة، واسم الموظف المفوَّض، ومسمى وظيفته، ومدة …",
-        ref: { law: "اللائحة التنفيذية للموارد البشرية", article: 237 } },
+        ref: { law: "اللائحة التنفيذية للموارد البشرية", article: 237, url: "https://www.hrsd.gov.sa/sites/default/files/2026-01/lay-ht-almward-albshryt-fy-alkhdmt-almdnyt--mttb-t-29rjb-1447h.pdf" } },
       { by: "أ. عبدالله الحارثي", time: "5:17 م", kind: "idafa", reply: true, re: "سؤال العضو (8337)",
         text: "كتابي." },
       { by: "أ. عبدالله الحارثي", time: "5:31 م", kind: "ishraf",
@@ -344,14 +360,14 @@ const SESSIONS = [
       { by: "", phone: "8843", time: "5:37 م", kind: "sanad",
         text: "لا تنتقل المسؤولية النظامية بصورة كاملة بمجرد التفويض، بل تتوزع بين الطرفين وفقًا للتالي:\n• المفوِّض (مدير المدرسة): يظل مسؤولًا عن قرار التفويض والمتابعة والرقابة، ولا يُعفى من المسؤولية.\n• المفوَّض إليه (الوكيل أو الموظف): يتحمّل المسؤولية المباشرة عن القرارات والتصرفات الصادرة عنه في حدود الصلاحية المفوَّضة إليه، متى ثبت تقصيره أو مخالفته.\n\nالأسانيد النظامية:\n• المادة (240) من اللائحة التنفيذية للموارد البشرية في الخدمة المدنية: «التفويض لا يُعفي المفوِّض من المسؤولية».\n• المادة (15) من نظام الخدمة المدنية: «كل موظف مسؤول عمّا يصدر عنه، ومسؤول عن حسن سير العمل في حدود اختصاصه».",
         refs: [
-          { law: "اللائحة التنفيذية للموارد البشرية في الخدمة المدنية", article: 240 },
-          { law: "نظام الخدمة المدنية", article: 15 }
+          { law: "اللائحة التنفيذية للموارد البشرية في الخدمة المدنية", article: 240, url: "https://www.hrsd.gov.sa/sites/default/files/2026-01/lay-ht-almward-albshryt-fy-alkhdmt-almdnyt--mttb-t-29rjb-1447h.pdf" },
+          { law: "نظام الخدمة المدنية", article: 15, url: "https://laws.boe.gov.sa/BoeLaws/Laws/LawDetails/32f651e6-2976-439c-b418-a9a700f23fb2/1" }
         ] },
       { by: "أ. عبدالله الحارثي", time: "8:40 م", kind: "ishraf",
         text: "أشكر لكم هذا التفاعل، وهو غير مستغرب منكم.\nيا إخوتي وأخواتي، تمنيت مشاركة أوسع من مختلف التخصصات؛ فالسؤال وإن بدا يسير الإجابة، إلا أننا نبحث عن إجابة مسندة بنص نظامي موثق، لتكون مرجعًا لنا ولمن ننقلها إليه.\n\nومحلّ الالتباس: الخلط بين تفويض ممارسة الصلاحية، وانتقال المسؤولية عن القرار." },
       { by: "", phone: "4582", time: "9:05 م", kind: "tasheeh",
         text: "رائع، للتصحيح في الأسانيد النظامية: المادة الخامسة وليست الرابعة في مدونة السلوك الوظيفي.\nالنص صحيح، لكنها المادة الخامسة.",
-        ref: { law: "مدونة السلوك الوظيفي", article: 5 } },
+        ref: { law: "مدونة قواعد السلوك الوظيفي وأخلاقيات الوظيفة العامة", article: 5, url: "https://tvtc.gov.sa/ar/Departments/tvtcdepartments/hr/Documents/%D9%85%D8%AF%D9%88%D9%86%D8%A9%20%D8%A7%D9%84%D8%B3%D9%84%D9%88%D9%83%20%D8%A7%D9%84%D9%88%D8%B8%D9%8A%D9%81%D9%8A%20%D8%A7%D9%84%D9%85%D8%B9%D8%AA%D9%85%D8%AF%D8%A9%20%D9%85%D9%86%20%D9%88%D8%B2%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D9%85%D9%88%D8%A7%D8%B1%D8%AF%20%D8%A7%D9%84%D8%A8%D8%B4%D8%B1%D9%8A%D8%A9%20(%D8%A7%D8%AE%D8%B1%20%D9%86%D8%B3%D8%AE%D8%A9%20%D9%85%D8%AF%D9%82%D9%82%D9%87%20%D8%B1%D9%82%D9%854).pdf" } },
       { by: "أ. عبدالله الحارثي", time: "9:09 م", kind: "idafa", reply: true, re: "التصويب",
         text: "تمّ التصحيح، ولذلك حذفت السابقة." },
       { by: "سليمان الذبياني", time: "9:20 م", kind: "ray",
@@ -388,7 +404,8 @@ const SESSIONS = [
           text: "بعض مديرات المدارس كلّفوا الإداريات بالدخول ومتابعة أداء المعلمات لحصصهن." },
         { by: "أ. عبدالله الحارثي", time: "9:49 م", kind: "sanad", reply: true, re: "سؤال العضو (6780)",
           text: "عند القسم النسائي جائز.\nيجوز للمديرة والوكيلة دخول حصة المعلمة معًا، ولا يوجد في الدليل التنظيمي نص يمنع اجتماعهما في الزيارة الصفية، أو يشترط انفراد إحداهما بالحضور.\n\nورد بالدليل التنظيمي لمدارس التعليم العام، الإصدار الرابع (1447هـ)، مهمة وكيل الشؤون التعليمية رقم (21)، التي تنص على حضور دروس المعلمين وفق جدول يعتمده مدير المدرسة.\n\nحضور الاثنين جائز نظامًا وليس مخالفة بحد ذاته، لكن لا يصح نسبة نص صريح للدليل يوجب أو ينص تحديدًا على حضورهما معًا.",
-          ref: { law: "الدليل التنظيمي لمدارس التعليم العام — الإصدار الرابع (1447هـ)", label: "مهمة وكيل الشؤون التعليمية رقم (21)" } },
+          ref: { law: "الدليل التنظيمي لمدارس التعليم العام — الإصدار الرابع (1447هـ)", label: "مهمة وكيل الشؤون التعليمية رقم (21)", url: "https://www.moe.gov.sa/ar/aboutus/aboutministry/RPRLibrary/%D8%A7%D9%84%D8%AF%D9%84%D9%8A%D9%84%20%D8%A7%D9%84%D8%AA%D9%86%D8%B8%D9%8A%D9%85%D9%8A%20%D9%84%D9%84%D9%85%D8%AF%D8%A7%D8%B1%D8%B3.pdf" },
+          check: "في نسخة الدليل المنشورة على موقع وزارة التعليم (إصدار 1442هـ) وردت هذه المهمة برقم (22) ضمن مهام وكيل المدرسة للشؤون التعليمية: «حضور دروس المعلمين وفق جدول يعتمده مدير المدرسة»، وقد يختلف الترقيم بين الإصدارات." },
         { by: "أ. عبدالله الحارثي", time: "9:55 م", kind: "idafa", reply: true, re: "العضو (8337)",
           text: "الدخول لا بأس به، ومتابعة الأداء هنا فيها توضيح:\nغير الجائز هو إسناد التقييم الفني والتربوي إليها؛ لأن هذا الأمر يحتاج تخصصًا." },
         { by: "", phone: "2235", time: "10:02 م", kind: "ray", reply: true, re: "العضو (8337)",
@@ -526,7 +543,8 @@ function threadHTML(list){ return `<div class="thread">${list.map(t=>`
       <div class="who"><b>${esc(whoName(t))}</b><span class="chip k-${t.kind||"idafa"}">${KINDS[t.kind]||"إضافة"}</span><span class="tm">${esc(AR(t.time||""))}</span></div>
       ${t.re?`<div class="re">ردًّا على ${esc(t.re)}</div>`:""}
       <p>${esc(t.text)}</p>
-      ${refsOf(t).map(r=>`<span class="cite">§ ${refLine(r)}</span>`).join("")}
+      ${refsOf(t).map(r=>r.url?`<a class="cite" href="${esc(r.url)}" target="_blank" rel="noopener">§ ${refLine(r)} ↗</a>`:`<span class="cite">§ ${refLine(r)}</span>`).join("")}
+      ${t.check?`<div class="check"><b>ملاحظة تحقق:</b> ${esc(t.check)}</div>`:""}
     </div></div>`).join("")}</div>`; }
 function sessionHTML(s, forPrint=false){
   const a=AXES[s.axis];
@@ -548,7 +566,7 @@ function sessionHTML(s, forPrint=false){
   </section>
 
   ${s.refs&&s.refs.length?`<div class="blk"><h3><i>§</i>السند النظامي</h3><div class="refs">${s.refs.map(r=>`
-    <div class="ref"><div class="art"><small>${r.label?"":"المادة"}</small><b>${r.label?"§":AR(r.article)}</b></div><div><div class="law">${esc(r.law)}</div><div class="det">${r.label?esc(AR(r.label)):""}${r.para?`الفقرة ${AR(r.para)}`:""}${r.page?` — الصفحة ${AR(r.page)}`:""}${r.note?` — ${esc(r.note)}`:""}</div></div></div>`).join("")}</div></div>`:""}
+    <div class="ref"><div class="art"><small>${r.label?"":"المادة"}</small><b>${r.label?"§":AR(r.article)}</b></div><div class="rb"><div class="law">${esc(r.law)}</div><div class="det">${r.label?esc(AR(r.label)):""}${r.para?`الفقرة ${AR(r.para)}`:""}${r.page?` — الصفحة ${AR(r.page)}`:""}${r.note?esc(r.note):""}</div>${r.text?`<blockquote>«${esc(r.text)}»</blockquote>`:""}${r.url?`<a class="srcl" href="${esc(r.url)}" target="_blank" rel="noopener">المصدر الرسمي ↗</a><span class="srcn">${esc(r.src||"")}</span>`:""}</div></div>`).join("")}</div></div>`:""}
 
   ${s.note?`<div class="blk"><div class="note-m"><b>${esc(s.note.by)}</b><p>${esc(s.note.text)}</p></div></div>`:""}
   <div class="blk"><h3><i>${AR(s.thread.length)}</i>خيط النقاش</h3>${threadHTML(s.thread)}</div>

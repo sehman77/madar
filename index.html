@@ -228,7 +228,9 @@ nav.tabs a.on{color:var(--teal);font-weight:700}
   .actions,.back{display:none!important}
   .blk>h3{break-after:avoid}
   .note-m,.ct{break-inside:avoid}
-  .cover{height:250mm;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+  .cover .cv{display:flex;flex-direction:column;align-items:center;text-align:center;padding:40mm 0 18mm;border-bottom:2px solid var(--teal);margin-bottom:10mm}
+  .cover .st{font-size:16pt;color:var(--ink)!important}
+  .tocw h2{font-size:14pt;color:var(--teal);margin-bottom:6px}
   .cover svg{width:110px;height:110px}
   .cover h1{font-family:"IBM Plex Sans Arabic";font-size:34pt;color:var(--teal);margin:14px 0 2px}
   .cover .en{letter-spacing:6px;color:var(--gold);font-weight:700}
@@ -619,10 +621,11 @@ function printOne(id){
   $("#print").innerHTML=`<div class="pg">${printHeader()}${sessionHTML(s,true)}</div>`;
   document.title=`مدار - اللقاء ${id} - ${AXES[s.axis].name}`; doPrint();
 }
+function countL(n){ return n===1?"لقاء واحد":n===2?"لقاءان":(n<=10?`${AR(n)} لقاءات`:`${AR(n)} لقاءً`); }
 function printBook(){
   const list=[...SESSIONS].sort((a,b)=>a.id-b.id);
-  $("#print").innerHTML=`<div class="pg cover"><svg style="--o:#0e5a63;--c:#0e5a63;--l:#fff"><use href="#madar"/></svg><h1>مَدار</h1><div class="en">MADAR</div><p style="font-size:16pt;color:var(--ink)">بين النص والتطبيق</p><p>كتيّب اللقاءات — ${AR(list.length)} لقاءً</p><p>${esc(SITE)}<br>إشراف أ. عبدالله الحارثي — توثيق ${esc(AUTHOR.name)}</p></div>
-  <div class="pg">${printHeader()}<h2 style="margin-bottom:10px">الفهرس</h2><ul class="toc">${list.map(s=>`<li><span>اللقاء ${AR(s.id)} — ${esc(AXES[s.axis].name)}</span><span>${esc(fullDate(s.date))}</span></li>`).join("")}</ul></div>
+  $("#print").innerHTML=`<div class="pg cover"><div class="cv"><svg style="--o:#0e5a63;--c:#0e5a63;--l:#fff"><use href="#madar"/></svg><h1>مَدار</h1><div class="en">MADAR</div><p class="st">بين النص والتطبيق</p><p>كتيّب اللقاءات — ${countL(list.length)}</p><p>${esc(SITE)}<br>إشراف أ. عبدالله الحارثي — توثيق ${esc(AUTHOR.name)}</p></div>
+  <div class="tocw"><h2>الفهرس</h2><ul class="toc">${list.map(s=>`<li><span>اللقاء ${AR(s.id)} — ${esc(AXES[s.axis].name)}</span><span>${esc(fullDate(s.date))}</span></li>`).join("")}</ul></div></div>
   ${list.map(s=>`<div class="pg">${printHeader()}${sessionHTML(s,true)}</div>`).join("")}`;
   document.title="مدار - كتيب اللقاءات"; doPrint();
 }

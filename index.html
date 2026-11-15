@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>مَدار — بين النص والتطبيق</title>
+<meta name="description" content="مَدار: أرشيف نقاشات سلسلة «بين النص والتطبيق» في أكاديمية نخبة التعليم — إجابة دقيقة، وسند نظامي، وخبرة متبادلة.">
+<meta name="theme-color" content="#0b3f45">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' rx='28' fill='%230e5a63'/%3E%3Cg transform='rotate(-28 60 60)'%3E%3Cellipse cx='60' cy='60' rx='46' ry='19' fill='none' stroke='%23e9c27a' stroke-width='6'/%3E%3C/g%3E%3Ccircle cx='60' cy='60' r='20' fill='%23fff'/%3E%3Ccircle cx='22' cy='81' r='8' fill='%23c99a3d'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#15282a; --ink2:#4d5f61; --muted:#8b9a9b;
+  --paper:#f6f3ec; --card:#fff; --line:#e6e0d3;
+  --teal:#0e5a63; --teal-d:#0b3f45; --teal-s:#e6f1f0;
+  --gold:#c99a3d; --gold-l:#e9c27a; --gold-s:#faf2e1;
+  --r:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;font-size:16px;line-height:1.8;-webkit-font-smoothing:antialiased}
+a{color:var(--teal);text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+input{font:inherit;color:inherit}
+.lt{unicode-bidi:isolate;direction:ltr;white-space:nowrap}
+
+/* ---------- الرأس ---------- */
+.hdr{background:var(--teal-d);color:#fff;padding:calc(14px + env(safe-area-inset-top)) 18px 14px;position:sticky;top:0;z-index:10}
+.hdr .in{max-width:760px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;color:#fff}
+.brand svg{width:42px;height:42px}
+.brand b{display:block;font-size:22px;line-height:1.1}
+.brand small{display:block;font-size:10.5px;letter-spacing:3px;color:var(--gold-l);font-weight:600;direction:ltr;text-align:right}
+.homebtn{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:99px;padding:6px 14px;font-size:14px;font-weight:600}
+.homebtn svg{width:18px;height:18px}
+.hdr .acad{font-size:12px;color:#cfe0e1;text-align:left;line-height:1.4}
+
+main{max-width:760px;margin:0 auto;padding:18px 16px 120px}
+
+/* ---------- البطل ---------- */
+.hero{background:linear-gradient(155deg,#0e5a63 0%,#0b3f45 70%);color:#fff;border-radius:26px;padding:26px 22px 22px;position:relative;overflow:hidden}
+.hero .orbit{position:absolute;inset-inline-start:-90px;top:-70px;width:300px;height:300px;opacity:.13}
+.hero .k{font-size:13px;color:var(--gold-l);font-weight:600}
+.hero .idea{font-size:13.5px;color:#fff;opacity:.9;margin-top:2px}
+.hero h1{font-family:"IBM Plex Sans Arabic";font-size:30px;line-height:1.5;margin:4px 0 8px;font-weight:700}
+.hero p{color:#d9e7e7;font-size:15px;max-width:520px}
+.motto{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.motto span{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);border-radius:99px;padding:3px 14px;font-size:13.5px;font-weight:500}
+.live{margin-top:18px;background:#fff;color:var(--ink);border-radius:18px;padding:14px 16px;display:flex;align-items:center;gap:14px}
+.live .dot{flex:none;width:12px;height:12px;border-radius:50%;background:var(--muted)}
+.live.on .dot{background:#2bb673;box-shadow:0 0 0 0 rgba(43,182,115,.6);animation:pulse 1.8s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(43,182,115,0)}100%{box-shadow:0 0 0 0 rgba(43,182,115,0)}}
+.live b{display:block;font-size:15.5px}
+.live small{color:var(--ink2);font-size:13px}
+
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0 6px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 8px;text-align:center}
+.stat b{display:block;font-size:24px;color:var(--teal);line-height:1.3}
+.stat small{font-size:12px;color:var(--ink2)}
+
+.sec{display:flex;align-items:baseline;justify-content:space-between;margin:26px 2px 12px}
+.sec h2{font-size:19px;font-weight:700}
+.sec a,.sec button{font-size:13.5px;color:var(--teal);font-weight:600}
+
+/* ---------- أسبوع المحاور ---------- */
+.week{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.wd{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px 6px;text-align:center;cursor:pointer;transition:.2s}
+.wd .d{font-size:12px;color:var(--ink2);font-weight:600}
+.wd .ic{width:38px;height:38px;border-radius:12px;margin:6px auto;display:grid;place-items:center}
+.wd .ic svg{width:21px;height:21px}
+.wd .t{font-size:11.5px;line-height:1.45;font-weight:600}
+.wd.today{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold-s)}
+.wd.today .d{color:var(--gold)}
+
+/* ---------- بطاقة اللقاء في القائمة ---------- */
+.sc{display:block;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;margin-bottom:12px;color:var(--ink);position:relative;transition:.2s}
+.sc:active{transform:scale(.995)}
+.sc .meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-size:12.5px;color:var(--ink2)}
+.chip{display:inline-flex;align-items:center;gap:5px;border-radius:99px;padding:1px 10px;font-size:12px;font-weight:600}
+.sc .q{font-family:"IBM Plex Sans Arabic";font-size:16.5px;line-height:1.85;margin:8px 0 10px;font-weight:600}
+.sc .foot{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--muted)}
+.avs{display:flex}
+.av{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:700;color:#fff;border:2px solid #fff;margin-inline-start:-8px}
+.avs .av:first-child{margin-inline-start:0}
+.demo-tag{background:#fdeee9;color:#a04a35}
+
+/* ---------- صفحة اللقاء ---------- */
+.back{display:inline-flex;align-items:center;gap:6px;font-size:14px;color:var(--ink2);margin-bottom:12px}
+.sess-h{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:20px;position:relative;overflow:hidden}
+.sess-h .no{position:absolute;inset-inline-end:18px;top:14px;font-family:"IBM Plex Sans Arabic";font-size:54px;font-weight:700;color:var(--teal-s);line-height:1}
+.sess-h .qlabel{font-size:12.5px;color:var(--gold);font-weight:700;margin-top:12px}
+.sess-h .q{font-family:"IBM Plex Sans Arabic";font-size:19px;line-height:1.9;font-weight:600;color:#10292b;margin-top:2px}
+.sess-h .by{font-size:13px;color:var(--ink2);margin-top:8px}
+.banner{background:#fdeee9;color:#8a3d2b;border-radius:14px;padding:10px 14px;font-size:13.5px;margin-bottom:12px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;border-radius:14px;padding:12px;font-weight:600;font-size:14.5px}
+.btn svg{width:18px;height:18px}
+.btn.p{background:var(--teal);color:#fff}
+.btn.g{background:var(--card);border:1px solid var(--line)}
+
+.blk{margin-top:22px}
+.blk>h3{font-size:16.5px;display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.blk>h3 i{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;background:var(--teal-s);color:var(--teal);font-style:normal;font-size:13px;font-weight:700}
+
+.refs{display:flex;flex-direction:column;gap:8px}
+.ref{display:flex;gap:12px;align-items:center;background:var(--gold-s);border:1px solid #f0e2c2;border-radius:14px;padding:10px 14px}
+.ref .art{flex:none;text-align:center;line-height:1.15;color:#7a5a1c}
+.ref .art small{font-size:10.5px;display:block}
+.ref .art b{font-family:"IBM Plex Sans Arabic";font-size:22px}
+.ref .law{font-weight:600;font-size:14.5px}
+.ref .det{font-size:12.5px;color:#7a6a4a}
+
+/* خيط النقاش */
+.thread{position:relative;padding-inline-start:0}
+.ct{display:flex;gap:12px;margin-bottom:14px}
+.ct .av{width:40px;height:40px;font-size:15px;margin:0;border:0;flex:none}
+.ct .bub{flex:1;background:var(--card);border:1px solid var(--line);border-radius:4px 18px 18px 18px;padding:12px 14px}
+.ct.reply{margin-inline-start:30px}
+.ct .who{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;font-size:13.5px}
+.ct .who b{font-weight:700}
+.ct .who .tm{color:var(--muted);font-size:12px;margin-inline-start:auto}
+.ct p{margin-top:4px;font-size:15.5px;line-height:1.95;white-space:pre-line}
+.ct .cite{display:inline-flex;flex-wrap:wrap;gap:4px 8px;margin-top:8px;font-size:12.5px;background:var(--teal-s);color:var(--teal);padding:3px 10px;border-radius:8px;font-weight:600}
+.k-sanad{background:var(--teal-s);color:var(--teal)}
+.k-khibra{background:var(--gold-s);color:#8a6418}
+.k-sual{background:#eef0f7;color:#46508a}
+.k-idafa{background:#f0f4ea;color:#4f6b2c}
+.k-ray{background:#f1eef6;color:#5d4a86}
+.k-tasheeh{background:#fdeee9;color:#a04a35}
+.k-ishraf{background:#0e5a63;color:#fff}
+.ct .cite{display:flex;width:fit-content}
+.ct .re{font-size:12px;color:var(--muted);margin-top:2px}
+.note-m{background:var(--gold-s);border-inline-start:4px solid var(--gold);border-radius:14px;padding:12px 16px}
+.note-m b{font-size:13px;color:#8a6418}
+.note-m p{font-family:"IBM Plex Sans Arabic";font-size:16.5px;line-height:1.95;white-space:pre-line;margin-top:2px}
+.answer{background:var(--card);border:2px solid var(--teal);border-radius:20px;padding:16px 18px}
+.answer .al{display:inline-block;background:var(--teal);color:#fff;border-radius:99px;padding:1px 12px;font-size:12.5px;font-weight:700}
+.answer .ab{font-size:13px;color:var(--ink2);margin-top:6px}
+.answer p{white-space:pre-line;line-height:2;font-size:15.5px;margin-top:6px}
+.trunc{margin-top:8px;font-size:12.5px;color:#a04a35}
+.side-intro{font-size:13.5px;color:var(--ink2);margin:-4px 2px 10px}
+
+.sum{background:linear-gradient(160deg,#0e5a63,#0b3f45);color:#fff;border-radius:22px;padding:20px}
+.sum h3{color:var(--gold-l);font-size:16px;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.sum ol{list-style:none;counter-reset:n}
+.sum li{counter-increment:n;position:relative;padding-inline-start:34px;margin:8px 0;line-height:1.85;font-size:15px}
+.sum li::before{content:counter(n,arabic-indic);position:absolute;inset-inline-start:0;top:2px;width:24px;height:24px;border-radius:50%;background:rgba(233,194,122,.18);color:var(--gold-l);font-weight:700;font-size:13px;display:grid;place-items:center;line-height:1}
+.apply{background:var(--card);border:1.5px dashed var(--teal);border-radius:18px;padding:16px 18px}
+.apply li{list-style:none;position:relative;padding-inline-start:26px;margin:6px 0;line-height:1.85}
+.apply li::before{content:"";position:absolute;inset-inline-start:2px;top:.55em;width:12px;height:12px;border:2px solid var(--teal);border-radius:4px}
+.reflect{font-family:"IBM Plex Sans Arabic";font-size:17px;text-align:center;padding:18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);color:var(--ink2)}
+.rights{margin-top:22px;background:#efebe1;border-radius:16px;padding:14px 16px;font-size:12.5px;color:var(--ink2);line-height:1.9}
+.rights b{color:var(--ink)}
+
+/* المحاور */
+.axc{display:flex;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-bottom:10px;color:var(--ink)}
+.axc .ic{flex:none;width:52px;height:52px;border-radius:16px;display:grid;place-items:center}
+.axc .ic svg{width:26px;height:26px}
+.axc b{display:block;font-size:16px;line-height:1.5}
+.axc small{color:var(--ink2);font-size:13px}
+.axc .n{margin-inline-start:auto;text-align:center;line-height:1.2;color:var(--teal)}
+.axc .n b{font-size:22px}
+
+/* المشاركون */
+.pp{display:flex;align-items:center;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px;margin-bottom:8px}
+.pp .av{width:44px;height:44px;font-size:16px;margin:0;border:0}
+.pp b{display:block;font-size:15px}
+.pp small{font-size:12.5px;color:var(--ink2)}
+.pp .cnt{margin-inline-start:auto;text-align:center;line-height:1.2}
+.pp .cnt b{font-size:20px;color:var(--teal)}
+.medal{font-size:11px;background:var(--gold-s);color:#8a6418;border-radius:99px;padding:0 8px;font-weight:700;margin-inline-start:6px}
+
+/* عن */
+.charter{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:6px 20px}
+.charter div{padding:14px 0;border-bottom:1px solid var(--line);font-family:"IBM Plex Sans Arabic";font-size:17px;line-height:1.9}
+.charter div:last-child{border:0}
+.charter div::before{content:"❝ ";color:var(--gold)}
+.tbl{width:100%;border-collapse:collapse;background:var(--card);border-radius:16px;overflow:hidden;border:1px solid var(--line)}
+.tbl td{padding:11px 14px;border-bottom:1px solid var(--line);font-size:14.5px}
+.tbl tr:last-child td{border:0}
+.tbl td:first-child{font-weight:700;width:30%;color:var(--teal)}
+.credits{display:grid;gap:10px}
+.cr{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.cr small{display:block;color:var(--muted);font-size:12px}
+.cr b{font-size:15.5px}
+
+.search{position:relative;margin-bottom:14px}
+.search input{width:100%;border:1px solid var(--line);background:var(--card);border-radius:14px;padding:12px 44px 12px 14px;outline:none}
+.search input:focus{border-color:var(--teal)}
+.search svg{position:absolute;right:14px;top:50%;transform:translateY(-50%);width:19px;color:var(--muted)}
+.filters{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:12px;scrollbar-width:none}
+.filters button{flex:none;border:1px solid var(--line);background:var(--card);border-radius:99px;padding:5px 14px;font-size:13px;font-weight:600;color:var(--ink2)}
+.filters button.on{background:var(--teal);color:#fff;border-color:var(--teal)}
+.empty{text-align:center;color:var(--muted);padding:34px 10px;background:var(--card);border:1px dashed var(--line);border-radius:var(--r)}
+
+/* الشريط السفلي */
+nav.tabs{position:fixed;bottom:0;inset-inline:0;z-index:10;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:6px 8px calc(6px + env(safe-area-inset-bottom))}
+nav.tabs .in{max-width:760px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr)}
+nav.tabs a{display:flex;flex-direction:column;align-items:center;gap:1px;font-size:11.5px;color:var(--muted);font-weight:500;padding:4px 0}
+nav.tabs a svg{width:23px;height:23px}
+nav.tabs a.on{color:var(--teal);font-weight:700}
+.toast{position:fixed;bottom:96px;left:50%;transform:translate(-50%,20px);background:var(--ink);color:#fff;padding:10px 18px;border-radius:12px;font-size:14px;opacity:0;transition:.25s;pointer-events:none;z-index:30;max-width:90vw;text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.foot-credit{text-align:center;font-size:12px;color:var(--muted);margin-top:30px;line-height:1.9}
+.view{animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* ---------- الطباعة (PDF) ---------- */
+#print{display:none}
+@page{size:A4;margin:16mm 16mm 18mm}
+@media print{
+  body{background:#fff;font-size:11pt}
+  .hdr,nav.tabs,main,.toast{display:none!important}
+  #print{display:block}
+  .pg{break-after:page}
+  .pg:last-child{break-after:auto}
+  .ph{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid var(--teal);padding-bottom:8px;margin-bottom:14px}
+  .ph .brand{color:var(--teal)}
+  .ph .brand b{color:var(--teal)}
+  .ph .brand small{color:var(--gold)}
+  .ph .r{text-align:left;font-size:9pt;color:var(--ink2);line-height:1.6}
+  .sess-h,.ct .bub,.ref,.apply,.sum{break-inside:avoid}
+  .sess-h{border-radius:10px}
+  .sum{background:#f3f7f7!important;color:var(--ink)!important;border:1px solid #cfe0e1}
+  .sum h3{color:var(--teal)!important}
+  .sum li::before{background:var(--teal-s)!important;color:var(--teal)!important}
+  .actions,.back{display:none!important}
+  .blk>h3{break-after:avoid}
+  .note-m,.ct{break-inside:avoid}
+  .cover{height:250mm;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+  .cover svg{width:110px;height:110px}
+  .cover h1{font-family:"IBM Plex Sans Arabic";font-size:34pt;color:var(--teal);margin:14px 0 2px}
+  .cover .en{letter-spacing:6px;color:var(--gold);font-weight:700}
+  .cover p{color:var(--ink2);margin-top:8px}
+  .toc li{display:flex;justify-content:space-between;border-bottom:1px dotted #ccc;padding:5px 0;list-style:none}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== الشعار ===================== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <clipPath id="madarFront"><rect x="0" y="60" width="120" height="60"/></clipPath>
+  <symbol id="madar" viewBox="0 0 120 120">
+    <g transform="rotate(-28 60 60)"><ellipse cx="60" cy="60" rx="54" ry="22" fill="none" stroke="var(--o,#e9c27a)" stroke-width="5"/></g>
+    <circle cx="60" cy="60" r="23" fill="var(--c,#fff)"/>
+    <g transform="rotate(-28 60 60)"><ellipse cx="60" cy="60" rx="54" ry="22" fill="none" stroke="var(--o,#e9c27a)" stroke-width="5" clip-path="url(#madarFront)"/></g>
+    <path d="M48 51h24M48 59h24M58 67h14" stroke="var(--l,#0b3f45)" stroke-width="3.6" stroke-linecap="round"/>
+    <circle cx="13" cy="85" r="8.5" fill="#c99a3d"/>
+  </symbol>
+  <symbol id="i-law" viewBox="0 0 24 24"><path d="M12 3v18M5 21h14M6 7h12M6 7l-3 7a3 3 0 0 0 6 0zM18 7l-3 7a3 3 0 0 0 6 0z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-hr" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c.8-3.6 3.2-5.4 6-5.4s5.2 1.8 6 5.4"/><circle cx="17" cy="9" r="2.4"/><path d="M16 14.6c2.4 0 4.2 1.6 5 4.4"/></g></symbol>
+  <symbol id="i-eval" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M9 8h6M9 12h6M9 16l1.6 1.6L14 14"/></g></symbol>
+  <symbol id="i-guide" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></g></symbol>
+  <symbol id="i-lead" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M4 20V10l8-6 8 6v10z"/><path d="M9.5 20v-5h5v5"/></g></symbol>
+</defs></svg>
+
+<header class="hdr"><div class="in">
+  <a class="brand" href="#home" aria-label="مَدار — الرئيسية">
+    <svg style="--o:#e9c27a;--c:#fff;--l:#0b3f45"><use href="#madar"/></svg>
+    <span><b>مَدار</b><small>MADAR</small></span>
+  </a>
+  <a class="homebtn" href="#home" aria-label="الصفحة الرئيسية"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11l8-7 8 7v9H4z"/><path d="M10 20v-6h4v6"/></svg>الرئيسية</a>
+</div></header>
+
+<main id="app"></main>
+<div id="print"></div>
+
+<nav class="tabs"><div class="in">
+  <a href="#home" data-t="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 11l8-7 8 7v9H4z"/><path d="M10 20v-6h4v6"/></svg>الرئيسية</a>
+  <a href="#sessions" data-t="sessions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg>اللقاءات</a>
+  <a href="#axes" data-t="axes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(-28 12 12)"/></svg>المحاور</a>
+  <a href="#people" data-t="people"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c.8-3.6 3.2-5.4 6-5.4s5.2 1.8 6 5.4"/><circle cx="17" cy="9" r="2.4"/><path d="M16 14.6c2.4 0 4.2 1.6 5 4.4"/></svg>المشاركون</a>
+  <a href="#about" data-t="about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg>عن مَدار</a>
+</div></nav>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ==========================================================
+   بيانات مَدار — يُضاف كل لقاء جديد في مصفوفة SESSIONS
+   ----------------------------------------------------------
+   id        : رقم اللقاء (١، ٢، ٣ …)
+   date      : التاريخ الميلادي بصيغة "2026-11-15" (يُحوَّل للهجري آليًا)
+   axis      : law | hr | eval | guide | lead
+   question  : نص السؤال كما طُرح
+   askedBy   : طارح السؤال
+   refs      : المراجع النظامية المعتمدة [{law, article, para, page}]
+   thread    : الإسهامات بترتيبها، كلٌّ منسوب لصاحبه:
+               {by:"الاسم كما في المجموعة", phone:"آخر أربعة أرقام إن لم يظهر اسم",
+                time:"5:12 م", kind:"sanad|khibra|sual|idafa", text:"…",
+                ref:{law, article, para, page}, reply:true}
+   summary   : خلاصة اللقاء (نقاط)
+   apply     : خطوات عملية للتطبيق
+   reflect   : سؤال للتأمل (اختياري)
+   demo      : true للمثال التوضيحي فقط — احذفه مع أول لقاء حقيقي
+   ========================================================== */
+const SESSIONS = [
+  {
+    id: 1,
+    date: "2026-11-14", axis: "law",
+    question: "إذا فوّض مدير المدرسة أحدَ الوكلاء أو الموظفين بممارسة صلاحيةٍ معينة، فهل تنتقل إليه المسؤوليةُ النظاميةُ كاملةً عن القرار، أم يبقى المدير مسؤولًا عن التفويض والمتابعة، ويتحمّل المفوَّض إليه مسؤوليةَ ما باشره في حدود التفويض؟",
+    askedBy: "أ. عبدالله الحارثي",
+    refs: [
+      { law: "اللائحة التنفيذية للموارد البشرية في الخدمة المدنية", article: 237, note: "كتابة التفويض وبياناته" },
+      { law: "اللائحة التنفيذية للموارد البشرية في الخدمة المدنية", article: 240, note: "التفويض لا يُعفي المفوِّض من المسؤولية" },
+      { law: "نظام الخدمة المدنية", article: 15, note: "مسؤولية الموظف عمّا يصدر عنه" },
+      { law: "مدونة السلوك الوظيفي", article: 5, note: "تصويبًا لما ورد أولًا بأنها الرابعة" }
+    ],
+    note: { by: "أ. عبدالله الحارثي — المشرف", text: "اعتبروها دورة مكثفة جدًا، نلتزم فيها بصلب السؤال، ونطلب سندًا موثقًا وتفصيلًا دقيقًا.\nفغايتنا أن نتعلم علمًا نافعًا، لا أن نتبادل إجابات عابرة." },
+    thread: [
+      { by: "سليمان الذبياني", time: "5:07 م", kind: "ray",
+        text: "مساء الخير.\nالتفويض لا يُعفي من المسؤولية." },
+      { by: "", phone: "8337", time: "5:08 م", kind: "sual",
+        text: "هل التفويض كتابي ورسمي؟" },
+      { by: "", phone: "4582", time: "5:11 م", kind: "sanad", reply: true, re: "سليمان الذبياني",
+        text: "مساء رائع 👍 السند النظامي: المادة ٢٤٠، اللائحة التنفيذية للموارد البشرية.",
+        ref: { law: "اللائحة التنفيذية للموارد البشرية", article: 240 } },
+      { by: "سليمان الذبياني", time: "5:12 م", kind: "ray",
+        text: "المفوَّض يتحمّل مسؤولية ما فُوِّض به وفق القرار، وتبقى مسؤولية المفوِّض في الإشراف والمتابعة." },
+      { by: "", phone: "4582", time: "5:14 م", kind: "sanad", reply: true, re: "سؤال العضو (8337)",
+        text: "المادة ٢٣٧ نصّت على ذلك: أن يكون مكتوبًا، يتضمن الصلاحيات المفوَّضة، واسم الموظف المفوَّض، ومسمى وظيفته، ومدة …",
+        ref: { law: "اللائحة التنفيذية للموارد البشرية", article: 237 } },
+      { by: "أ. عبدالله الحارثي", time: "5:17 م", kind: "idafa", reply: true, re: "سؤال العضو (8337)",
+        text: "كتابي." },
+      { by: "أ. عبدالله الحارثي", time: "5:31 م", kind: "ishraf",
+        text: "أحب أضيف نقطة:\nالسؤال قانونيّ المنشأ، إداريّ الامتداد." },
+      { by: "", phone: "8843", time: "5:37 م", kind: "sanad",
+        text: "لا تنتقل المسؤولية النظامية بصورة كاملة بمجرد التفويض، بل تتوزع بين الطرفين وفقًا للتالي:\n• المفوِّض (مدير المدرسة): يظل مسؤولًا عن قرار التفويض والمتابعة والرقابة، ولا يُعفى من المسؤولية.\n• المفوَّض إليه (الوكيل أو الموظف): يتحمّل المسؤولية المباشرة عن القرارات والتصرفات الصادرة عنه في حدود الصلاحية المفوَّضة إليه، متى ثبت تقصيره أو مخالفته.\n\nالأسانيد النظامية:\n• المادة (240) من اللائحة التنفيذية للموارد البشرية في الخدمة المدنية: «التفويض لا يُعفي المفوِّض من المسؤولية».\n• المادة (15) من نظام الخدمة المدنية: «كل موظف مسؤول عمّا يصدر عنه، ومسؤول عن حسن سير العمل في حدود اختصاصه».",
+        refs: [
+          { law: "اللائحة التنفيذية للموارد البشرية في الخدمة المدنية", article: 240 },
+          { law: "نظام الخدمة المدنية", article: 15 }
+        ] },
+      { by: "أ. عبدالله الحارثي", time: "8:40 م", kind: "ishraf",
+        text: "أشكر لكم هذا التفاعل، وهو غير مستغرب منكم.\nيا إخوتي وأخواتي، تمنيت مشاركة أوسع من مختلف التخصصات؛ فالسؤال وإن بدا يسير الإجابة، إلا أننا نبحث عن إجابة مسندة بنص نظامي موثق، لتكون مرجعًا لنا ولمن ننقلها إليه.\n\nومحلّ الالتباس: الخلط بين تفويض ممارسة الصلاحية، وانتقال المسؤولية عن القرار." },
+      { by: "", phone: "4582", time: "9:05 م", kind: "tasheeh",
+        text: "رائع، للتصحيح في الأسانيد النظامية: المادة الخامسة وليست الرابعة في مدونة السلوك الوظيفي.\nالنص صحيح، لكنها المادة الخامسة.",
+        ref: { law: "مدونة السلوك الوظيفي", article: 5 } },
+      { by: "أ. عبدالله الحارثي", time: "9:09 م", kind: "idafa", reply: true, re: "التصويب",
+        text: "تمّ التصحيح، ولذلك حذفت السابقة." },
+      { by: "سليمان الذبياني", time: "9:20 م", kind: "ray",
+        text: "ألاحظ أن كل الأسانيد التي ذُكرت تختص بالمساءلة والمسؤولية، بينما المادتان ٢٣٧ و٢٤٠ فقط ورد فيهما إشارة لتفويض صلاحيات الوزير والتفويض بصفة عامة.\nنشكر لك جهودك وحرصك على إيصال المعلومة ودعمها بالسند والمرجع النظامي." },
+      { by: "أ. عبدالله الحارثي", time: "9:25 م", kind: "idafa", reply: true, re: "سليمان الذبياني",
+        text: "أشكركم على هذه الملاحظة الدقيقة، وهي إضافة محل تقدير.\nوأتفق معكم في أن المواد المشار إليها تتناول المسؤولية والمساءلة الوظيفية، ولا تُعدّ بذاتها سندًا مباشرًا لجواز تفويض مدير المدرسة لصلاحياته.\nوكان المقصود الاستناد إليها في بيان الأثر النظامي للتفويض، وتوزيع المسؤولية بين المفوِّض والمفوَّض إليه، لا تأسيس مشروعية التفويض عليها.\nوتبقى مشروعية التفويض ونطاقه مرتبطة بالنصوص التنظيمية التي تحدد صلاحيات مدير المدرسة وضوابط تفويضها.\nشكرًا لحرصكم على دقة الاستدلال؛ فبالحوار العلمي تكتمل المعلومة وتُضبط الأحكام." },
+      { by: "أ. عبدالله الحارثي", time: "9:32 م", kind: "ishraf",
+        text: "إيضاح منهجي:\nيُفرَّق بين مشروعية التفويض وسنده النظامي، وبين آثاره المترتبة على توزيع المسؤولية والمساءلة؛ فلكلٍّ منهما مستنده النظامي المستقل." }
+    ],
+    answer: { by: "أ. عبدالله الحارثي", time: "9:08 م", truncated: true,
+      text: "المسؤولية النظامية عن التفويض في مدارس التعليم العام\n\nالأصل أن التفويض لا ينقل المسؤولية كاملة من مدير المدرسة إلى الوكيل أو الموظف المفوَّض إليه، ولا يُعفي أيًّا منهما من مسؤولياته الوظيفية، وإنما تتحدد المسؤولية بحسب الاختصاص والصلاحية الممنوحة، وما يثبت من فعلٍ أو امتناعٍ ومخالفة.\n\nأولًا: مسؤولية مدير المدرسة (المفوِّض)\nيبقى مدير المدرسة مسؤولًا عن اختصاصاته الأصلية، وعن مشروعية التفويض متى كان جائزًا، والالتزام بضوابطه، ومتابعة الأعمال المفوَّضة في حدود واجباته الإشرافية والتنظيمية.\nولا يُسأل عن كل خطأ يرتكبه المفوَّض إليه لمجرد صدور ال…" },
+    summary: [
+      "التفويض ينقل ممارسة الصلاحية، ولا ينقل المسؤولية كاملة؛ فالتفويض لا يُعفي المفوِّض من المسؤولية.",
+      "يبقى مدير المدرسة مسؤولًا عن قرار التفويض ومشروعيته، وعن المتابعة والرقابة على الأعمال المفوَّضة.",
+      "يتحمّل المفوَّض إليه مسؤولية ما باشره في حدود الصلاحية المفوَّضة، متى ثبت تقصيره أو مخالفته.",
+      "التفويض يكون مكتوبًا، يتضمن الصلاحيات المفوَّضة واسم الموظف ومسمى وظيفته ومدته.",
+      "يُفرَّق منهجيًا بين سند مشروعية التفويض، وسند آثاره في توزيع المسؤولية والمساءلة."
+    ],
+    apply: [
+      "اكتب قرار التفويض متضمنًا الصلاحية، واسم المفوَّض إليه، ومسماه الوظيفي، ومدة التفويض.",
+      "حدّد آلية متابعة دورية للأعمال المفوَّضة، فالمتابعة جزء من مسؤولية المفوِّض.",
+      "قبل الاستشهاد بمادة، تحقّق أنها تدل على المسألة نفسها لا على مسألة قريبة منها."
+    ],
+    reflect: "متى يصبح التفويض تخلّيًا عن المسؤولية، لا توزيعًا لها؟",
+    side: {
+      title: "استفسار بعد إغلاق النقاش",
+      intro: "طُرح بعد التاسعة مساءً، ووثّقناه لفائدته.",
+      thread: [
+        { by: "", phone: "6780", time: "9:38 م", kind: "sual",
+          text: "عندي استفسار: عادي المديرة والوكيلة يدخلون مع بعض على المعلمة يحضرون لها، أو يُكتفى بالمديرة؟" },
+        { by: "", phone: "6393", time: "9:40 م", kind: "ray", reply: true,
+          text: "وفق الدليل والمهام، المدير فقط مكلّف بحضور الحصص للمعلمات." },
+        { by: "", phone: "8337", time: "9:42 م", kind: "khibra",
+          text: "بعض مديرات المدارس كلّفوا الإداريات بالدخول ومتابعة أداء المعلمات لحصصهن." },
+        { by: "أ. عبدالله الحارثي", time: "9:49 م", kind: "sanad", reply: true, re: "سؤال العضو (6780)",
+          text: "عند القسم النسائي جائز.\nيجوز للمديرة والوكيلة دخول حصة المعلمة معًا، ولا يوجد في الدليل التنظيمي نص يمنع اجتماعهما في الزيارة الصفية، أو يشترط انفراد إحداهما بالحضور.\n\nورد بالدليل التنظيمي لمدارس التعليم العام، الإصدار الرابع (1447هـ)، مهمة وكيل الشؤون التعليمية رقم (21)، التي تنص على حضور دروس المعلمين وفق جدول يعتمده مدير المدرسة.\n\nحضور الاثنين جائز نظامًا وليس مخالفة بحد ذاته، لكن لا يصح نسبة نص صريح للدليل يوجب أو ينص تحديدًا على حضورهما معًا.",
+          ref: { law: "الدليل التنظيمي لمدارس التعليم العام — الإصدار الرابع (1447هـ)", label: "مهمة وكيل الشؤون التعليمية رقم (21)" } },
+        { by: "أ. عبدالله الحارثي", time: "9:55 م", kind: "idafa", reply: true, re: "العضو (8337)",
+          text: "الدخول لا بأس به، ومتابعة الأداء هنا فيها توضيح:\nغير الجائز هو إسناد التقييم الفني والتربوي إليها؛ لأن هذا الأمر يحتاج تخصصًا." },
+        { by: "", phone: "2235", time: "10:02 م", kind: "ray", reply: true, re: "العضو (8337)",
+          text: "متابعة فنية للمعلمة كيف وهنّ إداريات؟\nمتابعة الانضباط وغيرها ممكن." }
+      ]
+    }
+  }
+];
+
+/* ============ ثوابت السلسلة ============ */
+const AXES = {
+  law:   { name:"الشؤون القانونية", tiny:"الشؤون القانونية", day:"السبت", wd:6, icon:"i-law",   c:"#0e5a63", s:"#e6f1f0" },
+  hr:    { name:"الموارد البشرية", tiny:"الموارد البشرية", day:"الأحد", wd:0, icon:"i-hr",    c:"#8a6418", s:"#faf2e1" },
+  eval:  { name:"التقويم والاختبارات", tiny:"التقويم والاختبارات", day:"الاثنين", wd:1, icon:"i-eval", c:"#46508a", s:"#eef0f7" },
+  guide: { name:"التوجيه والإرشاد الطلابي والسلوك والمواظبة", short:"التوجيه والإرشاد والسلوك", tiny:"التوجيه والسلوك", day:"الثلاثاء", wd:2, icon:"i-guide", c:"#4f6b2c", s:"#f0f4ea" },
+  lead:  { name:"القيادة والإشراف والتربية الخاصة", short:"القيادة والإشراف", tiny:"القيادة والإشراف", day:"الأربعاء", wd:3, icon:"i-lead", c:"#8a3d55", s:"#f7eaf0" }
+};
+const ORDER = ["law","hr","eval","guide","lead"];
+const KINDS = { sanad:"رأي بسند", ray:"رأي", khibra:"خبرة ميدانية", sual:"استفسار", idafa:"إضافة", tasheeh:"تصويب", ishraf:"توجيه المشرف" };
+const refsOf = t => t.refs ? t.refs : (t.ref ? [t.ref] : []);
+const allThread = s => [...s.thread, ...((s.side&&s.side.thread)||[])];
+const CHARTER = [
+  "لسنا هنا لنُثبت أن أحدًا هو الأعلم، بل لنتعلّم جميعًا ما لم نكن نعلم.",
+  "لسنا في سباقٍ مع الوقت لنكون أول المجاوبين، بل في رحلة بحث لنكون أقرب إلى الصواب.",
+  "الرأي يُحترم، والخبرة تُقدَّر، لكنّ المرجع هو النظام والدليل.",
+  "حين تتلاقح الخبرات وتتعدد زوايا النظر، تصبح النتيجة أعمق وأقرب إلى الصواب."
+];
+const SITE = "أكاديمية نخبة التعليم";
+const AUTHOR = { name:"محمد آل سحمان", url:"https://reach.link/mohammed-bin-sehman" };
+
+/* ============ أدوات ============ */
+const AR = s => String(s).replace(/\d/g, d => "٠١٢٣٤٥٦٧٨٩"[d]);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const $ = s => document.querySelector(s);
+const app = $("#app");
+const PALETTE = ["#0e5a63","#8a6418","#46508a","#4f6b2c","#8a3d55","#2f6f8f","#7a4f2a","#5b5b8f"];
+const whoName = t => t.by ? t.by : `عضو (${AR(t.phone||"")})`;
+const whoKey  = t => t.by ? t.by : "#"+(t.phone||"");
+function colorOf(k){ let h=0; for(const c of k) h=(h*31+c.charCodeAt(0))>>>0; return PALETTE[h%PALETTE.length]; }
+function initial(t){ if(!t.by) return "#"; const n=t.by.replace(/^(أ\.|د\.|م\.|الأستاذ|الدكتور)\s*/,"").trim(); return n.charAt(0); }
+const av = (t,cls="av") => `<span class="${cls}" style="background:${colorOf(whoKey(t))}">${esc(initial(t))}</span>`;
+function toDate(s){ const [y,m,d]=s.split("-").map(Number); return new Date(Date.UTC(y,m-1,d,12)); }
+function hijri(s){ try{ return new Intl.DateTimeFormat("ar-SA-u-ca-islamic-umalqura",{day:"numeric",month:"long",year:"numeric",timeZone:"UTC"}).format(toDate(s)); }catch(e){ return ""; } }
+function greg(s){ try{ return new Intl.DateTimeFormat("ar-EG",{day:"numeric",month:"long",year:"numeric",timeZone:"UTC"}).format(toDate(s)); }catch(e){ return ""; } }
+function fullDate(s){ return `${dayName(s)} ${hijri(s).replace(/\s*هـ$/,"")}هـ الموافق ${greg(s)}م`; }
+function dayName(s){ return new Intl.DateTimeFormat("ar",{weekday:"long",timeZone:"UTC"}).format(toDate(s)); }
+function riyadhNow(){
+  const p=new Intl.DateTimeFormat("en-US",{timeZone:"Asia/Riyadh",weekday:"short",hour:"numeric",minute:"numeric",hourCycle:"h23"}).formatToParts(new Date());
+  const g=k=>p.find(x=>x.type===k).value; const wd={Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6}[g("weekday")];
+  return { wd, mins: +g("hour")*60 + +g("minute") };
+}
+function daysToRamadan(){
+  const f=new Intl.DateTimeFormat("en-u-ca-islamic-umalqura-nu-latn",{month:"numeric",day:"numeric",timeZone:"Asia/Riyadh"});
+  const d=new Date(); let lessons=0;
+  for(let i=0;i<400;i++){
+    const x=new Date(d.getTime()+i*864e5);
+    const parts=f.formatToParts(x); const m=+parts.find(p=>p.type==="month").value, dd=+parts.find(p=>p.type==="day").value;
+    if(m===9&&dd===1) return {days:i,lessons};
+    const wd=new Date(x.toLocaleString("en-US",{timeZone:"Asia/Riyadh"})).getDay();
+    if(i>0 && wd!==4 && wd!==5) lessons++;
+  }
+  return null;
+}
+function toast(m){ const t=$("#toast"); t.textContent=m; t.classList.add("show"); clearTimeout(toast.h); toast.h=setTimeout(()=>t.classList.remove("show"),2800); }
+const axisChip = k => { const a=AXES[k]; return `<span class="chip" style="background:${a.s};color:${a.c}">${esc(a.short||a.name)}</span>`; };
+const sorted = () => [...SESSIONS].sort((a,b)=>b.id-a.id);
+const people = () => { const m=new Map(); SESSIONS.forEach(s=>allThread(s).forEach(t=>{ const k=whoKey(t); const e=m.get(k)||{t,count:0,sanad:0,sessions:new Set()}; e.count++; if(refsOf(t).length) e.sanad++; e.sessions.add(s.id); m.set(k,e); })); return [...m.values()].sort((a,b)=>b.sanad-a.sanad||b.count-a.count); };
+const refLine = r => r.label ? `${esc(r.law)} • ${esc(AR(r.label))}` : `${esc(r.law)} • المادة ${AR(r.article)}${r.para?` • الفقرة ${AR(r.para)}`:""}${r.page?` • ص ${AR(r.page)}`:""}`;
+
+/* ============ الرئيسية ============ */
+function vHome(){
+  const now=riyadhNow(); const todayAxis=ORDER.find(k=>AXES[k].wd===now.wd);
+  let live;
+  if(!todayAxis) live={on:false,t:"إجازة نهاية الأسبوع",s:"نلتقي السبت الساعة الخامسة مساءً مع محور «الشؤون القانونية»"};
+  else if(now.mins<17*60) live={on:false,t:`سؤال اليوم: ${AXES[todayAxis].name}`,s:"يُطرح الساعة الخامسة مساءً، ويبقى النقاش مفتوحًا حتى التاسعة"};
+  else if(now.mins<21*60){ const left=21*60-now.mins; live={on:true,t:`النقاش مفتوح الآن: ${AXES[todayAxis].name}`,s:`يُغلق الساعة التاسعة مساءً — بقي ${AR(Math.floor(left/60))} س و${AR(left%60)} د`}; }
+  else live={on:false,t:"أُغلق نقاش اليوم",s:"تُنشر خلاصته في مَدار، ونلتقي غدًا الساعة الخامسة"};
+  const rm=daysToRamadan(); const ppl=people();
+  const latest=sorted().slice(0,3);
+  app.innerHTML=`<div class="view">
+  <section class="hero">
+    <svg class="orbit" viewBox="0 0 120 120"><g transform="rotate(-28 60 60)"><ellipse cx="60" cy="60" rx="54" ry="22" fill="none" stroke="#fff" stroke-width="2"/></g><circle cx="60" cy="60" r="23" fill="none" stroke="#fff" stroke-width="2"/></svg>
+    <div class="k">سلسلة نقاشات مهنية — ${esc(SITE)}</div>
+    <div class="idea">فكرة رائدة من الأستاذ / عبدالله الحارثي</div>
+    <h1>بين النص والتطبيق</h1>
+    <p>أسئلة متقدمة نناقش من خلالها المواقف الإدارية والتنظيمية، ونتبادل الخبرات لفهم النصوص وحسن تطبيقها، مع الاستناد إلى المادة والفقرة والصفحة متى أمكن.</p>
+    <div class="motto"><span>إجابة دقيقة</span><span>سند نظامي</span><span>خبرة متبادلة</span></div>
+    <div class="live ${live.on?"on":""}"><span class="dot"></span><div><b>${esc(live.t)}</b><small>${esc(live.s)}</small></div></div>
+  </section>
+
+  <div class="stats">
+    <div class="stat"><b>${AR(SESSIONS.length)}</b><small>لقاءً موثّقًا</small></div>
+    <div class="stat"><b>${AR(ppl.length)}</b><small>مشاركًا</small></div>
+    <div class="stat"><b>${rm?AR(rm.lessons):"—"}</b><small>لقاءً حتى رمضان</small></div>
+  </div>
+
+  <div class="sec"><h2>مدار الأسبوع</h2><a href="#axes">المحاور</a></div>
+  <div class="week">${ORDER.map(k=>{const a=AXES[k];return `<a class="wd ${k===todayAxis?"today":""}" href="#axis-${k}"><div class="d">${a.day}</div><div class="ic" style="background:${a.s};color:${a.c}"><svg><use href="#${a.icon}"/></svg></div><div class="t">${esc(a.tiny)}</div></a>`}).join("")}</div>
+
+  <div class="sec"><h2>أحدث اللقاءات</h2><a href="#sessions">الكل</a></div>
+  ${latest.length?latest.map(card).join(""):`<div class="empty">لم يُوثَّق أي لقاء بعد.</div>`}
+
+  <div class="sec"><h2>تصدير</h2></div>
+  <button class="btn p" style="width:100%" onclick="printBook()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>كتيّب اللقاءات كاملًا PDF</button>
+  ${footCredit()}
+  </div>`;
+}
+
+function card(s){
+  const a=AXES[s.axis]; const uniq=[...new Map(s.thread.map(t=>[whoKey(t),t])).values()];
+  return `<a class="sc" href="#s-${s.id}">
+    <div class="meta">${axisChip(s.axis)}<span>اللقاء ${AR(s.id)}</span><span>${esc(fullDate(s.date))}</span>${s.demo?`<span class="chip demo-tag">مثال توضيحي</span>`:""}</div>
+    <div class="q">${esc(s.question)}</div>
+    <div class="foot"><span class="avs">${uniq.slice(0,5).map(t=>av(t)).join("")}</span><span>${AR(s.thread.length)} إسهامات — ${AR(s.thread.filter(t=>refsOf(t).length).length)} بسند</span></div>
+  </a>`;
+}
+
+/* ============ اللقاءات ============ */
+let fAxis="all", fQ="";
+function vSessions(){
+  const list=sorted().filter(s=>(fAxis==="all"||s.axis===fAxis)&&(!fQ||(s.question+s.thread.map(t=>t.text+whoName(t)).join(" ")+s.summary.join(" ")+s.refs.map(r=>r.law+" "+(r.article||"")+" "+(r.label||"")).join(" ")+(s.answer?s.answer.text:"")+allThread(s).map(t=>t.text+whoName(t)).join(" ")).includes(fQ)));
+  app.innerHTML=`<div class="view">
+  <div class="sec" style="margin-top:4px"><h2>اللقاءات</h2><button onclick="printBook()">كتيّب PDF</button></div>
+  <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" placeholder="ابحث في الأسئلة والإسهامات والمواد…" value="${esc(fQ)}"></div>
+  <div class="filters"><button data-a="all" class="${fAxis==="all"?"on":""}">الكل</button>${ORDER.map(k=>`<button data-a="${k}" class="${fAxis===k?"on":""}">${esc(AXES[k].short||AXES[k].name)}</button>`).join("")}</div>
+  <div id="list">${list.length?list.map(card).join(""):`<div class="empty">لا توجد نتائج مطابقة.</div>`}</div>
+  </div>`;
+  const q=$("#q"); q.addEventListener("input",()=>{ fQ=q.value.trim(); const p=q.selectionStart; vSessions(); const n=$("#q"); n.focus(); n.setSelectionRange(p,p); });
+  document.querySelectorAll(".filters button").forEach(b=>b.onclick=()=>{fAxis=b.dataset.a; vSessions();});
+}
+
+/* ============ صفحة اللقاء ============ */
+function threadHTML(list){ return `<div class="thread">${list.map(t=>`
+    <div class="ct ${t.reply?"reply":""}">${av(t)}<div class="bub">
+      <div class="who"><b>${esc(whoName(t))}</b><span class="chip k-${t.kind||"idafa"}">${KINDS[t.kind]||"إضافة"}</span><span class="tm">${esc(AR(t.time||""))}</span></div>
+      ${t.re?`<div class="re">ردًّا على ${esc(t.re)}</div>`:""}
+      <p>${esc(t.text)}</p>
+      ${refsOf(t).map(r=>`<span class="cite">§ ${refLine(r)}</span>`).join("")}
+    </div></div>`).join("")}</div>`; }
+function sessionHTML(s, forPrint=false){
+  const a=AXES[s.axis];
+  return `
+  ${s.demo&&!forPrint?`<div class="banner">هذا لقاء توضيحي لعرض الفكرة؛ الأسماء والمراجع فيه أمثلة، ويُستبدل بأول لقاء حقيقي.</div>`:""}
+  <section class="sess-h">
+    <div class="no">${AR(s.id)}</div>
+    <div class="meta" style="display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:13px;color:var(--ink2)">
+      <span class="chip" style="background:${a.s};color:${a.c}"><svg style="width:14px;height:14px"><use href="#${a.icon}"/></svg>${esc(a.name)}</span>
+      <span>${esc(fullDate(s.date))}</span>
+    </div>
+    <div class="qlabel">الموقف</div>
+    <div class="q">${esc(s.question)}</div>
+    <div class="by">طرحه: ${esc(s.askedBy||"إدارة المجموعة")} — الساعة الخامسة مساءً، والنقاش حتى التاسعة مساءً</div>
+    ${forPrint?"":`<div class="actions">
+      <button class="btn p" onclick="printOne(${s.id})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>تحميل PDF</button>
+      <button class="btn g" onclick="shareS(${s.id})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>نسخ الرابط</button>
+    </div>`}
+  </section>
+
+  ${s.refs&&s.refs.length?`<div class="blk"><h3><i>§</i>السند النظامي</h3><div class="refs">${s.refs.map(r=>`
+    <div class="ref"><div class="art"><small>${r.label?"":"المادة"}</small><b>${r.label?"§":AR(r.article)}</b></div><div><div class="law">${esc(r.law)}</div><div class="det">${r.label?esc(AR(r.label)):""}${r.para?`الفقرة ${AR(r.para)}`:""}${r.page?` — الصفحة ${AR(r.page)}`:""}${r.note?` — ${esc(r.note)}`:""}</div></div></div>`).join("")}</div></div>`:""}
+
+  ${s.note?`<div class="blk"><div class="note-m"><b>${esc(s.note.by)}</b><p>${esc(s.note.text)}</p></div></div>`:""}
+  <div class="blk"><h3><i>${AR(s.thread.length)}</i>خيط النقاش</h3>${threadHTML(s.thread)}</div>
+  ${s.answer?`<div class="blk"><div class="answer"><div class="al">الإجابة المعتمدة</div><div class="ab">${esc(s.answer.by)}${s.answer.time?` — ${esc(AR(s.answer.time))}`:""}</div><p>${esc(s.answer.text)}</p>${s.answer.truncated?`<div class="trunc">يُستكمل نص الإجابة المعتمدة كاملًا من المصدر.</div>`:""}</div></div>`:""}
+
+  ${s.summary&&s.summary.length?`<div class="blk"><div class="sum"><h3>
+    <svg style="width:22px;height:22px;--o:#e9c27a;--c:#fff;--l:#0b3f45"><use href="#madar"/></svg>خلاصة المدار</h3>
+    <ol>${s.summary.map(x=>`<li>${esc(x)}</li>`).join("")}</ol></div></div>`:""}
+
+  ${s.apply&&s.apply.length?`<div class="blk"><h3><i>✓</i>من النص إلى التطبيق</h3><ul class="apply">${s.apply.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`:""}
+
+  ${s.reflect?`<div class="blk"><div class="reflect">${esc(s.reflect)}</div></div>`:""}
+
+  ${s.side?`<div class="blk"><h3><i>+</i>${esc(s.side.title)}</h3>${s.side.intro?`<p class="side-intro">${esc(s.side.intro)}</p>`:""}${threadHTML(s.side.thread)}</div>`:""}
+  <div class="rights"><b>حفظ الحقوق:</b> كل إسهام في هذا اللقاء منسوب لصاحبه كما ورد في مجموعة ${esc(SITE)}، ولا يُنقل إلا مع عزوه إليه وإلى السلسلة.
+  سلسلة «بين النص والتطبيق» من إعداد ${esc(SITE)} وإشراف أ. عبدالله الحارثي. توثيق مَدار وتصميمه: ${esc(AUTHOR.name)}.</div>`;
+}
+function vSession(id){
+  const s=SESSIONS.find(x=>x.id===id); if(!s){ go("sessions"); return; }
+  app.innerHTML=`<div class="view"><a class="back" href="#sessions">→ اللقاءات</a>${sessionHTML(s)}${footCredit()}</div>`;
+}
+
+/* ============ المحاور ============ */
+function vAxes(){
+  app.innerHTML=`<div class="view"><div class="sec" style="margin-top:4px"><h2>محاور الأسبوع</h2></div>
+  <p style="color:var(--ink2);font-size:14px;margin:-4px 2px 14px">يُخصَّص كل يوم لمحور، ويُطرح سؤاله الساعة الخامسة مساءً، ويبقى النقاش مفتوحًا حتى التاسعة.</p>
+  ${ORDER.map(k=>{const a=AXES[k];const n=SESSIONS.filter(s=>s.axis===k).length;return `<a class="axc" href="#axis-${k}"><div class="ic" style="background:${a.s};color:${a.c}"><svg><use href="#${a.icon}"/></svg></div><div><small>${a.day}</small><b>${esc(a.name)}</b></div><div class="n"><b>${AR(n)}</b><br><small>لقاء</small></div></a>`}).join("")}
+  ${footCredit()}</div>`;
+}
+function vAxis(k){
+  const a=AXES[k]; if(!a){ go("axes"); return; }
+  const list=sorted().filter(s=>s.axis===k);
+  app.innerHTML=`<div class="view"><a class="back" href="#axes">→ المحاور</a>
+  <div class="axc" style="border-color:${a.c}"><div class="ic" style="background:${a.s};color:${a.c}"><svg><use href="#${a.icon}"/></svg></div><div><small>كل ${a.day}</small><b>${esc(a.name)}</b></div></div>
+  ${list.length?list.map(card).join(""):`<div class="empty">لم يُوثَّق لقاء في هذا المحور بعد.</div>`}
+  ${footCredit()}</div>`;
+}
+
+/* ============ المشاركون ============ */
+function vPeople(){
+  const ppl=people();
+  app.innerHTML=`<div class="view"><div class="sec" style="margin-top:4px"><h2>أهل المدار</h2></div>
+  <p style="color:var(--ink2);font-size:14px;margin:-4px 2px 14px">كل من أسهم في النقاش، مرتّبين بعدد إسهاماتهم المستندة إلى نص نظامي. لمن ظهر برقمه دون اسم، نكتفي بآخر أربعة أرقام حفظًا لخصوصيته.</p>
+  ${ppl.length?ppl.map((e,i)=>`<div class="pp">${av(e.t)}<div><b>${esc(whoName(e.t))}${i===0&&e.sanad?`<span class="medal">صاحب السند</span>`:""}</b><small>${AR(e.sessions.size)} لقاء — ${AR(e.sanad)} بسند</small></div><div class="cnt"><b>${AR(e.count)}</b><br><small>إسهام</small></div></div>`).join(""):`<div class="empty">لا مشاركات بعد.</div>`}
+  ${footCredit()}</div>`;
+}
+
+/* ============ عن مَدار ============ */
+function vAbout(){
+  app.innerHTML=`<div class="view">
+  <div style="text-align:center;padding:10px 0 4px">
+    <svg style="width:96px;height:96px;--o:#0e5a63;--c:#0e5a63;--l:#fff"><use href="#madar"/></svg>
+    <h2 style="font-family:'IBM Plex Sans Arabic';font-size:34px;color:var(--teal);line-height:1.4">مَدار</h2>
+    <div style="letter-spacing:6px;color:var(--gold);font-weight:700;font-size:14px">MADAR</div>
+    <p style="color:var(--ink2);margin-top:8px;font-size:14.5px">النص في المركز، والتطبيق يدور حوله، وكل مشارك نقطةٌ في هذا المدار.</p>
+  </div>
+
+  <div class="sec"><h2>ميثاق النقاش</h2></div>
+  <div class="charter">${CHARTER.map(x=>`<div>${esc(x)}</div>`).join("")}</div>
+  <p style="font-size:12.5px;color:var(--muted);margin:8px 4px 0">من رسائل إدارة المجموعة في افتتاح السلسلة.</p>
+
+  <div class="sec"><h2>الجدول</h2></div>
+  <table class="tbl">${ORDER.map(k=>`<tr><td>${AXES[k].day}</td><td>${esc(AXES[k].name)}</td></tr>`).join("")}
+  <tr><td>الموعد</td><td>يُطرح السؤال الساعة الخامسة مساءً، ويبقى النقاش مفتوحًا حتى التاسعة</td></tr>
+  <tr><td>المدة</td><td>سؤال كل ليلة حتى حلول شهر رمضان المبارك</td></tr></table>
+
+  <div class="sec"><h2>الحقوق</h2></div>
+  <div class="credits">
+    <div class="cr"><small>السلسلة</small><b>«بين النص والتطبيق» — ${esc(SITE)}</b></div>
+    <div class="cr"><small>الفكرة والإشراف</small><b>أ. عبدالله الحارثي (أبو زايد) ومجموعة تطوير الأكاديمية</b></div>
+    <div class="cr"><small>الإسهامات</small><b>منسوبة لأصحابها، ولا تُنقل إلا مع عزوها إليهم وإلى السلسلة</b></div>
+    <div class="cr"><small>توثيق مَدار وتصميمه</small><b><a href="${AUTHOR.url}" target="_blank" rel="noopener">${esc(AUTHOR.name)}</a></b></div>
+  </div>
+  ${footCredit()}</div>`;
+}
+const footCredit=()=>`<div class="foot-credit">© ${AR(new Intl.DateTimeFormat("ar-SA-u-ca-islamic-umalqura-nu-latn",{year:"numeric"}).format(new Date()).replace(/[^\d]/g,""))}هـ ${esc(SITE)} — جميع الحقوق محفوظة<br>توثيق وتصميم: <a href="${AUTHOR.url}" target="_blank" rel="noopener">${esc(AUTHOR.name)}</a></div>`;
+
+/* ============ PDF ============ */
+function printHeader(){ return `<div class="ph"><div class="brand"><svg style="width:40px;height:40px;--o:#0e5a63;--c:#0e5a63;--l:#fff"><use href="#madar"/></svg><span><b>مَدار</b><small>MADAR</small></span></div><div class="r">${esc(SITE)}<br>سلسلة «بين النص والتطبيق»</div></div>`; }
+function doPrint(){ setTimeout(()=>{ try{ window.print(); }catch(e){ toast("افتح الرابط في المتصفح لتحميل PDF"); } },150); }
+function printOne(id){
+  const s=SESSIONS.find(x=>x.id===id);
+  $("#print").innerHTML=`<div class="pg">${printHeader()}${sessionHTML(s,true)}</div>`;
+  document.title=`مدار - اللقاء ${id} - ${AXES[s.axis].name}`; doPrint();
+}
+function printBook(){
+  const list=[...SESSIONS].sort((a,b)=>a.id-b.id);
+  $("#print").innerHTML=`<div class="pg cover"><svg style="--o:#0e5a63;--c:#0e5a63;--l:#fff"><use href="#madar"/></svg><h1>مَدار</h1><div class="en">MADAR</div><p style="font-size:16pt;color:var(--ink)">بين النص والتطبيق</p><p>كتيّب اللقاءات — ${AR(list.length)} لقاءً</p><p>${esc(SITE)}<br>إشراف أ. عبدالله الحارثي — توثيق ${esc(AUTHOR.name)}</p></div>
+  <div class="pg">${printHeader()}<h2 style="margin-bottom:10px">الفهرس</h2><ul class="toc">${list.map(s=>`<li><span>اللقاء ${AR(s.id)} — ${esc(AXES[s.axis].name)}</span><span>${esc(fullDate(s.date))}</span></li>`).join("")}</ul></div>
+  ${list.map(s=>`<div class="pg">${printHeader()}${sessionHTML(s,true)}</div>`).join("")}`;
+  document.title="مدار - كتيب اللقاءات"; doPrint();
+}
+window.addEventListener("afterprint",()=>{ document.title="مَدار — بين النص والتطبيق"; });
+async function shareS(id){
+  const url=location.href.split("#")[0]+"#s-"+id;
+  try{ await navigator.clipboard.writeText(url); toast("نُسخ رابط اللقاء، الصقه في المجموعة"); }catch(e){ toast(url); }
+}
+
+/* ============ التوجيه ============ */
+let CUR="home";
+function go(h){ h=(h||"home").replace(/^#/,""); try{ history.replaceState(null,"","#"+h); }catch(e){} route(h); }
+function route(hh){
+  const h=hh||(location.hash||"#home").slice(1)||"home"; CUR=h;
+  let tab="home";
+  if(h.startsWith("s-")){ vSession(+h.slice(2)); tab="sessions"; }
+  else if(h.startsWith("axis-")){ vAxis(h.slice(5)); tab="axes"; }
+  else if(h==="sessions"){ vSessions(); tab="sessions"; }
+  else if(h==="axes"){ vAxes(); tab="axes"; }
+  else if(h==="people"){ vPeople(); tab="people"; }
+  else if(h==="about"){ vAbout(); tab="about"; }
+  else vHome();
+  document.querySelectorAll("nav.tabs a").forEach(a=>a.classList.toggle("on",a.dataset.t===tab));
+  window.scrollTo(0,0);
+}
+window.addEventListener("hashchange",()=>route());
+document.addEventListener("click",e=>{ const a=e.target.closest("a[href^='#']"); if(!a) return; e.preventDefault(); go(a.getAttribute("href")); });
+route();
+setInterval(()=>{ if(CUR==="home") vHome(); },60000);
+</script>
+</body>
+</html>
